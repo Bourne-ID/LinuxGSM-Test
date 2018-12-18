@@ -26,7 +26,7 @@ Additional consideration will be made to minimise the impact of performing signi
 ![Network Architecture](https://github.com/Bourne-ID/LinuxGSM-Test/raw/master/doc/LinuxGSM%20Test%20Workflow.png)
 
 ## Website
-The domain checklinuxgsm.net has been created which will host the results and logs of completed tests and will display a filterable table for the user to browse. Details on the last and historic builds will be available either by linking to an external build agent result screen or through a homebrew solution. 
+The domain [checklinuxgsm.net](checklinuxgsm.net) has been aquired which will host the results and logs of completed tests and will display a filterable table for the user to browse. Details on the last and historic builds will be available either by linking to an external build agent result screen or through a homebrew solution. 
 
 ## Project Risks
 ### Capacity Management and Cache Validation
