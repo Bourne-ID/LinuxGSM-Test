@@ -30,6 +30,6 @@ The domain [checklinuxgsm.net](checklinuxgsm.net) has been aquired which will ho
 
 ## Project Risks
 ### Capacity Management and Cache Validation
-There is a significant requirement for storage due to the number of game servers and OS dependencies involved to minimise the ingress bandwidth. There is a risk that without invalidating the cache or clearing out old data that the amount of storage required will reach an unsustainable threshold and may affect cache server performance. 
+There is a significant requirement for storage due to the number of game servers and OS dependencies involved to minimise the ingress bandwidth. There is a risk that without invalidating the cache or clearing out old data that the amount of storage required will reach an unsustainable threshold and may effect cache server performance. 
 
 This will be managed by ensuring cache headers are correctly utilised, that invalidating certain parts of the cache will remove the data from storage and that monitoring will be in place to ensure the storage is not filled.
