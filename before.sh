@@ -17,7 +17,7 @@ body="{
     \"env\": {
       \"matrix\": [\"SERVER=${SERVER}\",\"SERVER=ut3\"}]
     },
-    \"script\": \"utils\\test.sh \$SERVER\"
+    \"script\": \"utils/test.sh \$SERVER\"
   }
 }}"
 echo "${body}"
