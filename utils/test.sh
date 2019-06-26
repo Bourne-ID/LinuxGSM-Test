@@ -15,7 +15,7 @@ wget -O linuxgsm.sh https://linuxgsm.sh
 chmod +x linuxgsm.sh
 bash linuxgsm.sh "${gameserver}"
 
-. ${gameserver} ai
+. ${gameserver}server ai
 
 result=$?
 exit $result
