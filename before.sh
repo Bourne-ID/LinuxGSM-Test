@@ -10,4 +10,21 @@ while read shortcode servercode servername steam; do
     fi
 done < serverlist.csv
 
-travis
+body="{
+\"request\": {
+\"branch\":\"${TRAVIS_BRANCH}\",
+\"config\": }
+  \"env\": {
+    \"matrix\": [\"SERVER=${SERVER}\"]
+  },
+  \"script\": \"utils\test.sh \$SERVER\"
+}
+}}"
+
+curl -s -X POST \
+   -H "Content-Type: application/json" \
+   -H "Accept: application/json" \
+   -H "Travis-API-Version: 3" \
+   -H "Authorization: token ${TRAVISAPI}" \
+   -d "$body" \
+   https://api.travis-ci.com/repo/Bourne-ID%2FLinuxGSM-Test/requests
