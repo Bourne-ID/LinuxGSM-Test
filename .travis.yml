@@ -1,6 +1,10 @@
 language: node_js
 dist: xenial
 
+env:
+  - SERVER=csgo
+  - SERVER=bb2
+
 before_script:
   - bash before.sh
 
