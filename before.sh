@@ -15,9 +15,9 @@ body="{
   \"branch\":\"${TRAVIS_BRANCH}\",
   \"config\": {
     \"env\": {
-      \"matrix\": [\"SERVER=${SERVER}\"]
+      \"matrix\": [\"SERVER=${SERVER}\",\"SERVER=ut3\"}]
     },
-    \"script\": \"utils\test.sh \$SERVER\"
+    \"script\": \"utils\\test.sh \$SERVER\"
   }
 }}"
 echo "${body}"
@@ -28,4 +28,4 @@ curl -s -X POST \
    -H "Travis-API-Version: 3" \
    -H "Authorization: token ${TRAVISAPI}" \
    -d "$body" \
-   https://api.travis-ci.com/repo/Bourne-ID%2FLinuxGSM-Test/requests
+   https://api.travis-ci.org/repo/Bourne-ID%2FLinuxGSM-Test/requests
