@@ -5,10 +5,10 @@ env:
   - SERVER=csgo
   - SERVER=bb2
 
-before_script:
+script:
   - bash before.sh
 
-jobs:
-  include:
-    - stage: jobs
-      script: "bash ./utils/test.sh $SERVER"
+#jobs:
+#  include:
+#    - stage: jobs
+#      script: "bash ./utils/test.sh $SERVER"

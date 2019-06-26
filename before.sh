@@ -9,3 +9,5 @@ while read shortcode servercode servername steam; do
         echo "$SERVER"
     fi
 done < serverlist.csv
+
+travis
