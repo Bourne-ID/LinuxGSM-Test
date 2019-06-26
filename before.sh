@@ -1,21 +1,24 @@
 #!/usr/bin/env bash
+function join_by { local d=$1; shift; echo -n "$1"; shift; printf "%s" "${@/#/$d}"; }
+
+declare -a servers
 # Get serverlist.csv from linuxgsm
 wget https://raw.githubusercontent.com/Bourne-ID/LinuxGSM/devops/defaultcheck/lgsm/data/serverlist.csv -O serverlist.csv
 
 IFS=","
 while read shortcode servercode servername steam; do
     if [[ $steam == false ]]; then
-        export SERVER=${shortcode}
-        echo "$SERVER"
+        servers+=("${shortcode}")
     fi
 done < serverlist.csv
+serverlist=$(join_by "\",\"SERVER=" "${servers[@]}")
 
 body="{
 \"request\": {
   \"branch\":\"${TRAVIS_BRANCH}\",
   \"config\": {
     \"env\": {
-      \"matrix\": [\"SERVER=${SERVER}\",\"SERVER=ut3\"]
+      \"matrix\": [\"SERVER=${serverlist}\"]
     },
     \"script\": \"\$TRAVIS_BUILD_DIR/utils/test.sh \$SERVER\"
   }
