@@ -15,7 +15,7 @@ body="{
   \"branch\":\"${TRAVIS_BRANCH}\",
   \"config\": {
     \"env\": {
-      \"matrix\": [\"SERVER=${SERVER}\",\"SERVER=ut3\"}]
+      \"matrix\": [\"SERVER=${SERVER}\",\"SERVER=ut3\"]
     },
     \"script\": \"utils/test.sh \$SERVER\"
   }
