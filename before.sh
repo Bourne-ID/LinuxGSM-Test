@@ -12,13 +12,13 @@ done < serverlist.csv
 
 body="{
 \"request\": {
-\"branch\":\"${TRAVIS_BRANCH}\",
-\"config\": }
-  \"env\": {
-    \"matrix\": [\"SERVER=${SERVER}\"]
-  },
-  \"script\": \"utils\test.sh \$SERVER\"
-}
+  \"branch\":\"${TRAVIS_BRANCH}\",
+  \"config\": {
+    \"env\": {
+      \"matrix\": [\"SERVER=${SERVER}\"]
+    },
+    \"script\": \"utils\test.sh \$SERVER\"
+  }
 }}"
 echo "${body}"
 
