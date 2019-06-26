@@ -20,6 +20,7 @@ body="{
   \"script\": \"utils\test.sh \$SERVER\"
 }
 }}"
+echo "${body}"
 
 curl -s -X POST \
    -H "Content-Type: application/json" \
