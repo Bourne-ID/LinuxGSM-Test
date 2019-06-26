@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Get serverlist.csv from linuxgsm
-wget https://github.com/Bourne-ID/LinuxGSM/blob/devops/defaultcheck/lgsm/data/serverlist.csv
+wget https://raw.githubusercontent.com/Bourne-ID/LinuxGSM/devops/defaultcheck/lgsm/data/serverlist.csv -O serverlist.csv
 
 IFS=","
 while read shortcode servercode servername steam; do
