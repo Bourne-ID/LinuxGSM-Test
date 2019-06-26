@@ -6,5 +6,6 @@ IFS=","
 while read shortcode servercode servername steam; do
     if [[ $steam == false ]]; then
         export SERVER=${shortcode}
+        echo "$SERVER"
     fi
 done < serverlist.csv
