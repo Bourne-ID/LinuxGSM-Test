@@ -11,7 +11,7 @@ fi
 # Add architecture i386 just in case it's not already enabled
 sudo dpkg --add-architecture i386;
 
-wget -O linuxgsm.sh https://linuxgsm.sh
+wget -O linuxgsm.sh https://raw.githubusercontent.com/Bourne-ID/LinuxGSM/devops/defaultcheck/linuxgsm.sh
 chmod +x linuxgsm.sh
 bash linuxgsm.sh "${gameserver}"
 
