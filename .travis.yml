@@ -1,24 +1,10 @@
-language: node_js
+language: generic
 dist: xenial
-node_js:
-  - 10
 
-before_script:
+script:
+  - bash before.sh
 
-
-jobs:
-  include:
-    - stage: jobs
-      script: bash tests/tests_jc2server.sh
-    - # stage name not required
-      script: bash tests/tests_fctrserver.sh
-    - # stage name not required
-      script: bash tests/tests_mcserver.sh
-    - # stage name not required
-      script: bash tests/tests_ts3server.sh
-    - # stage name not required
-      script: bash utils/check_defaults.sh
-    - # retired as codacy does this check.
-      # script: bash tests/tests_shellcheck.sh
-after_success:
-  - sh .travis/push.sh
+#jobs:
+#  include:
+#    - stage: jobs
+#      script: "bash ./utils/test.sh $SERVER"

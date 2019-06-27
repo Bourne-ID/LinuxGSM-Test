@@ -13,9 +13,11 @@ sudo dpkg --add-architecture i386;
 
 wget -O linuxgsm.sh https://raw.githubusercontent.com/Bourne-ID/LinuxGSM/devops/defaultcheck/linuxgsm.sh
 chmod +x linuxgsm.sh
+# !!!TODO: Temporary workaround for broken linuxgsm
+bash linuxgsm.sh list > /dev/null
 bash linuxgsm.sh "${gameserver}"
 
-. ${gameserver} ai
+. ${gameserver}server ai
 
 result=$?
 exit $result
