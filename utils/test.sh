@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# fail on first error code
+set -e
+
 # Calls to this script must have a game server name (./test.sh server)
 gameserver=$1
 
