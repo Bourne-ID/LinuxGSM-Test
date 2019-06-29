@@ -24,6 +24,7 @@ bash linuxgsm.sh "${gameserver}"
 
 result=$?
 # Todo parse result
-. ${gameserver}server start
+echo "starting server"
+sh ${gameserver}server start
 result=$?
 exit $result
