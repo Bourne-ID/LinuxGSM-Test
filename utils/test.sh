@@ -23,4 +23,7 @@ bash linuxgsm.sh "${gameserver}"
 . ${gameserver}server ai
 
 result=$?
+# Todo parse result
+. ${gameserver}server start
+result=$?
 exit $result
