@@ -20,11 +20,11 @@ chmod +x linuxgsm.sh
 bash linuxgsm.sh list > /dev/null
 bash linuxgsm.sh "${gameserver}"
 
-. ${gameserver}server ai
+bash ${gameserver}server ai
 
 result=$?
 # Todo parse result
 echo "starting server"
-sh ${gameserver}server start
+bash ${gameserver}server start
 result=$?
 exit $result
