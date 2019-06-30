@@ -20,7 +20,7 @@ body="{
     \"env\": {
       \"matrix\": [\"SERVER=${serverlist}\"]
     },
-    \"script\": \"\$TRAVIS_BUILD_DIR/utils/test.sh \$SERVER\"
+    \"script\": [\"\$TRAVIS_BUILD_DIR/utils/test.sh \$SERVER\", [\"\$TRAVIS_BUILD_DIR/utils/test.sh \$SERVER\"]
   }
 }}"
 echo "${body}"
