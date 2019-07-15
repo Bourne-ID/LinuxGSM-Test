@@ -10,3 +10,8 @@ variable "region" {
 variable "ssh_key" {
   description = "public key for SSH Authentication"
 }
+
+variable "worker_count" {
+  description = "The number of worker servers for the Rancher server"
+  default = "2"
+}
