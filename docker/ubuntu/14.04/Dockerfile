@@ -8,8 +8,8 @@ RUN dpkg --add-architecture i386 && \
     apt-get install -y \
       curl \
       unzip \
-      wget
-    && rm -rf /var/lib/apt/lists/*
+      wget &&
+      rm -rf /var/lib/apt/lists/*
 
 RUN groupadd -r lgsm --gid=1337 && useradd -r -g lgsm --uid=1337 lgsm
 
