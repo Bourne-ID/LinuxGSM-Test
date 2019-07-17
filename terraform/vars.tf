@@ -15,3 +15,8 @@ variable "worker_count" {
   description = "The number of worker servers for the Rancher server"
   default = "2"
 }
+
+variable "controller_count" {
+  description = "The number of controller (and worker) servers for the Rancher server"
+  default = "1"
+}
