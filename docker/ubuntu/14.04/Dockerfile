@@ -19,7 +19,8 @@ WORKDIR /linuxgsm
 
 RUN wget https://linuxgsm.com/dl/linuxgsm.sh && chmod +x linuxgsm.sh
 
-COPY ../../runtests.sh runtests.sh
+#Docker Build working folder must me the /docker to pick up this global file
+COPY runtests.sh runtests.sh
 
 ENTRYPOINT runtests.sh
 
