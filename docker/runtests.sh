@@ -1,7 +1,9 @@
-#!/usr/bin/env bash
+#!/bin/sh
 # PROVISION
-./linuxgsm.sh csgoserver
+./linuxgsm.sh fofserver
 # AUTO_INSTALL
-./csgoserver ai
+./fofserver ai
 # START
-./csgoserver start
+./fofserver start
+sleep 60 #TODO: Make this smarter
+./fofserver monitor

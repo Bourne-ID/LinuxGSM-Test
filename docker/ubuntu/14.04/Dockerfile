@@ -7,20 +7,23 @@ RUN dpkg --add-architecture i386 && \
     apt-get update && \
     apt-get install -y \
       curl \
+      sudo \
       unzip \
       wget && \
       rm -rf /var/lib/apt/lists/*
 
-RUN groupadd -r lgsm --gid=1337 && useradd -r -g lgsm --uid=1337 lgsm
-
+RUN groupadd -r lgsm --gid=1337 && useradd -m -r -g lgsm --uid=1337 lgsm
+RUN echo "lgsm ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 RUN mkdir /linuxgsm && chown lgsm:lgsm /linuxgsm
 USER lgsm
 WORKDIR /linuxgsm
 
 RUN wget https://linuxgsm.com/dl/linuxgsm.sh && chmod +x linuxgsm.sh
 
-#Docker Build working folder must me the /docker to pick up this global file
-COPY runtests.sh runtests.sh
-
-ENTRYPOINT runtests.sh
+#  Docker Build working folder must me the /docker to pick up this global file
+COPY runtests.sh /linuxgsm/
+#USER root
+#RUN ["/bin/bash", "-c", "echo I am now using bash!"]
+ENTRYPOINT ["/linuxgsm/runtests.sh"]
+#RUN ["/bin/bash"]
 
