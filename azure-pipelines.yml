@@ -14,7 +14,7 @@ steps:
     containerRegistry: 'QuayIO'
     repository: 'test'
     command: 'buildAndPush'
-    Dockerfile: '/Dockerfile/**/Dockerfile'
+    Dockerfile: '/Dockerfile/ubuntu/14.04/Dockerfile'
     buildContext: '/Dockerfile'
 
 # - script: echo Hello, world!
