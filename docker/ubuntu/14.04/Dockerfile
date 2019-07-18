@@ -7,10 +7,13 @@ RUN dpkg --add-architecture i386 && \
     apt-get update && \
     apt-get install -y \
       curl \
+      locales \
       sudo \
       unzip \
       wget && \
-      rm -rf /var/lib/apt/lists/*
+      rm -rf /var/lib/apt/lists/* && \
+      localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+ENV LANG en_US.utf8
 
 RUN groupadd -r lgsm --gid=1337 && useradd -m -r -g lgsm --uid=1337 lgsm
 RUN echo "lgsm ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
