@@ -7,7 +7,7 @@ dockerfiles=$(find . -name Dockerfile -printf "FILE=%p\",\"")
   \"branch\":\"${TRAVIS_BRANCH}\",
   \"config\": {
     \"env\": {
-      \"matrix\": [\"${dockerfiles::-2}\"]
+      \"matrix\": [\"${dockerfiles::-3}\"]
     },
     \"script\": [\"\$TRAVIS_BUILD_DIR/travis/build.sh \$FILE\"]
   }
