@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-dockerfiles=$(find . -name Dockerfile -printf "%p,")
+dockerfiles=$(find . -name Dockerfile -printf "FILE=%p,")
 
     body="{
 \"request\": {
