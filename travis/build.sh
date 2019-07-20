@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #USAGE: ./build.sh [Dockerfile location]
-
+line=$1
 tag="${line///Dockerfile/}"
 # Remove ./
 tag="${tag:2}"
