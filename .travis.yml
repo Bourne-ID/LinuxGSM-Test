@@ -1,0 +1,8 @@
+language: generic
+dist: xenial
+
+services:
+  - docker
+
+script:
+  - bash travis/launchdockerbuilds.sh
