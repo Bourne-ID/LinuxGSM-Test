@@ -21,4 +21,3 @@ curl -s -X POST \
    -H "Authorization: token ${TRAVISAPI}" \
    -d "$body" \
    https://api.travis-ci.org/repo/Bourne-ID%2FLinuxGSM-Test/requests
-  done
