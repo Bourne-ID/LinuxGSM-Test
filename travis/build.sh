@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 #USAGE: ./build.sh [Dockerfile location]
 line=$1
-tag="${line///Dockerfile/}"
+line="${line///Dockerfile/}"
 # Remove ./
-tag="${tag:2}"
+tag="${line:2}"
 # Replace special chars with -
 tag="${tag//[\/\.]/-}"  #ubuntu-14-04
 
