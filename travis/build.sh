@@ -8,8 +8,10 @@ tag="${line:2}"
 tag="${tag//[\/\.]/-}"  #ubuntu-14-04
 
 # Docker build
+cd docker
 
 docker build -t "bourneid/linuxgsm-test:${tag}" ${line}
+
 if [[ $? -ne 0 ]]; then
     exit 1
 fi
