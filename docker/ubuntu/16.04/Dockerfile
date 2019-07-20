@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM ubuntu:16.04
 LABEL maintainer="BourneID <admin@h-r-l.co.uk>, on behalf of LinuxGSM"
 
 ENV DEBIAN_FRONTEND noninteractive
