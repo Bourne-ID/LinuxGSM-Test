@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 cd docker
+pwd=$(pwd)
+
+echo "PWD: ${pwd}"
+
 dockerfiles=$(find . -name Dockerfile -printf "FILE=%p\",\"")
 
     body="{

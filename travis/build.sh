@@ -1,16 +1,21 @@
 #!/usr/bin/env bash
 #USAGE: ./build.sh [Dockerfile location]
-line=$1
-line="${line///Dockerfile/}"
+
+file=$1
+echo "Input: ${file}"
+line="${file///Dockerfile/}"
 # Remove ./
 tag="${line:2}"
 # Replace special chars with -
 tag="${tag//[\/\.]/-}"  #ubuntu-14-04
 
+echo "Tag: ${tag}"
 # Docker build
 cd docker
 
-docker build -t "bourneid/linuxgsm-test:${tag}" ${line}
+pwd=$(pwd)
+echo "PWD: ${pwd}"
+docker build -t "bourneid/linuxgsm-test:${tag}" -f ${file} .
 
 if [[ $? -ne 0 ]]; then
     exit 1
