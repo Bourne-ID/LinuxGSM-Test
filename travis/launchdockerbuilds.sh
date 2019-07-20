@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+cd docker
 dockerfiles=$(find . -name Dockerfile -printf "FILE=%p\",\"")
 
     body="{
