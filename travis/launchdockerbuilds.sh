@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
-dockerfiles=$(find . -name Dockerfile -printf "FILE=\"%p\",")
+dockerfiles=$(find . -name Dockerfile -printf "FILE=%p\",\"")
 
     body="{
 \"request\": {
   \"branch\":\"${TRAVIS_BRANCH}\",
   \"config\": {
     \"env\": {
-      \"matrix\": [\"${dockerfiles::-1}\"]
+      \"matrix\": [\"${dockerfiles::-2}\"]
     },
     \"script\": [\"\$TRAVIS_BUILD_DIR/travis/build.sh \$FILE\"]
   }
