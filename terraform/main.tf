@@ -54,13 +54,32 @@ module "cluster_setup" {
 }
 
 // Because every autonomonous server should have a name :D
-resource "random_pet" "worker_pet_name" {
-  count = "${var.worker_count}"
+resource "random_pet" "worker_pet_name_a" {
+  count = "${var.worker_count_a}"
 }
 
+resource "random_pet" "worker_pet_name_b" {
+  count = "${var.worker_count_b}"
+}
 resource "random_pet" "rancher_controller" {
   count = "${var.controller_count}"
 }
+
+# This fails with RKE provisioning - probably fixable, at the same time the rancher box is going to be busy enough...
+
+//resource "null_resource" "rancher_controller" {
+//  connection {
+//    user = "root"
+//    password = "${random_string.password.result}"
+//    host = "${linode_instance.controller.ip_address}"
+//  }
+//  provisioner "remote-exec" {
+//    inline = [
+//      "sudo ${module.cluster_setup.cluster_registration} --etcd --controlplane"
+//    ]
+//  }
+//  depends_on = ["module.cluster_setup"]
+//}
 
 resource "linode_instance" "rancher_controller" {
   count = "${var.controller_count}"
@@ -68,7 +87,7 @@ resource "linode_instance" "rancher_controller" {
   label = "${element(random_pet.rancher_controller.*.id, count.index)}"
   group = "Terraform"
   region = "eu-west"
-  type = "g6-standard-6"
+  type = "g6-standard-8"
   authorized_keys = [ "${var.ssh_key}" ]
   private_ip = true
   root_pass = "${random_string.password.result}"
@@ -94,20 +113,52 @@ resource "linode_instance" "rancher_controller" {
   }
 }
 
-resource "linode_instance" "workers" {
-  count = "${var.worker_count}"
+resource "linode_instance" "workers_pool_a" {
+  count = "${var.worker_count_a}"
   image = "linode/ubuntu16.04lts"
-  label = "${element(random_pet.worker_pet_name.*.id, count.index)}"
+  label = "${element(random_pet.worker_pet_name_a.*.id, count.index)}"
   group = "Terraform"
   region = "eu-west"
-  type = "g6-standard-6"
+  type = "g6-standard-8"
   authorized_keys = [ "${var.ssh_key}" ]
   private_ip = true
   root_pass = "${random_string.password.result}"
   provisioner "remote-exec" {
     inline = [
-      "sudo hostnamectl set-hostname ${element(random_pet.worker_pet_name.*.id, count.index)}",
-      "sudo sed -i '1i127.0.0.1\t${element(random_pet.worker_pet_name.*.id, count.index)}\n' /etc/hosts",
+      "sudo hostnamectl set-hostname ${element(random_pet.worker_pet_name_a.*.id, count.index)}",
+      "sudo sed -i '1i127.0.0.1\t${element(random_pet.worker_pet_name_a.*.id, count.index)}\n' /etc/hosts",
+      "sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1",
+      "sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1",
+      "sudo apt-get update",
+      "sudo apt-get install -y apt-transport-https ca-certificates curl gnupg-agent software-properties-common",
+      "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -",
+      "sudo add-apt-repository \"deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable\"",
+      "curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -",
+      "echo \"deb https://apt.kubernetes.io/ kubernetes-$(lsb_release -cs) main\" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list",
+      "sudo apt-get update",
+      "sudo apt-get install -y docker-ce docker-ce-cli containerd.io",
+      "sudo ${module.cluster_setup.cluster_registration} --worker"
+    ]
+    connection {
+      password = "${random_string.password.result}"
+    }
+  }
+}
+
+resource "linode_instance" "workers_pool_b" {
+  count = "${var.worker_count_b}"
+  image = "linode/ubuntu16.04lts"
+  label = "${element(random_pet.worker_pet_name_b.*.id, count.index)}"
+  group = "Terraform"
+  region = "eu-west"
+  type = "g6-standard-2"
+  authorized_keys = [ "${var.ssh_key}" ]
+  private_ip = true
+  root_pass = "${random_string.password.result}"
+  provisioner "remote-exec" {
+    inline = [
+      "sudo hostnamectl set-hostname ${element(random_pet.worker_pet_name_b.*.id, count.index)}",
+      "sudo sed -i '1i127.0.0.1\t${element(random_pet.worker_pet_name_b.*.id, count.index)}\n' /etc/hosts",
       "sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1",
       "sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1",
       "sudo apt-get update",

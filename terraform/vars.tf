@@ -11,9 +11,14 @@ variable "ssh_key" {
   description = "public key for SSH Authentication"
 }
 
-variable "worker_count" {
-  description = "The number of worker servers for the Rancher server"
-  default = "2"
+variable "worker_count_a" {
+  description = "The number of worker servers for the Rancher server in pool A"
+  default = "1"
+}
+
+variable "worker_count_b" {
+  description = "The number of worker servers for the Rancher server in pool B"
+  default = "0"
 }
 
 variable "controller_count" {
